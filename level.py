@@ -14,7 +14,7 @@ def transform(x, a, b, c, d, e):
     d: white point of output
     e: gamma adjustment
     """
-    return np.add(np.multiply(d - b, np.power(np.abs(np.divide(np.subtract(x, a), c - a)), e)), b)
+    return np.clip(np.add(np.multiply(d - b, np.power(np.clip(np.divide(np.subtract(x, a), c - a), 0, 1), e)), b), 0, 1)
 
 
 def level(image, transforms):
